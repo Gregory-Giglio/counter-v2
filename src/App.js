@@ -3,7 +3,7 @@ import {useState} from "react";
 import Counter from "./assets/components/Counter";
 
 function App() {
-  const [tabCounter, setTabCounter] = useState([]); //le premier élément du tableau correspond au nombre de counter à afficher
+  const [tabCounter, setTabCounter] = useState([]);
   
   return (
     <div className="App">
