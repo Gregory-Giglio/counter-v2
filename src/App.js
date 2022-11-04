@@ -1,23 +1,41 @@
-import logo from './logo.svg';
 import './App.css';
+import {useState} from "react";
+import Counter from "./assets/components/Counter";
 
 function App() {
+  const [tabCounter, setTabCounter] = useState([0, 0, 0, 0]); //le premier élément du tableau correspond au nombre de counter à afficher
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
+        <button className={tabCounter[0] === 3 && "hide"} onClick={() => {
+          const newTab = [...tabCounter];
+          newTab[0] = newTab[0] + 1;
+          setTabCounter(newTab);
+        }}>
+          Add counter
+        </button>
+        
+        <button className={tabCounter[0] === 0 && "hide"} onClick={() => {
+          const newTab = [...tabCounter];
+          newTab[0] = newTab[0] - 1;
+          setTabCounter(newTab);
+        }}>
+          Remove counter
+        </button>
+      
+
+      <div className="counters">
+        <div className={tabCounter[0] < 1 && "hide"}>
+          <Counter tabCounter={tabCounter} setTabCounter={setTabCounter} Counter="1" />
+        </div>
+        <div className={tabCounter[0] < 2 && "hide"}>
+          <Counter tabCounter={tabCounter} setTabCounter={setTabCounter} Counter="2" />
+        </div>
+        <div className={tabCounter[0] < 3 && "hide"}>
+          <Counter tabCounter={tabCounter} setTabCounter={setTabCounter} Counter="3" />
+        </div>
+      </div>
     </div>
   );
 }
